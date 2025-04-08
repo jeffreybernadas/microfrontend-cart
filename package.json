@@ -1,0 +1,22 @@
+{
+  "name": "microfrontend-cart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"pnpm run start:app-shell\" \"pnpm run start:cart\" \"pnpm run start:checkout\" \"pnpm run start:order\" \"pnpm run start:products\" \"pnpm run start:state-management\"",
+    "start:app-shell": "cd app-shell && pnpm run start",
+    "start:cart": "cd cart && pnpm run start",
+    "start:checkout": "cd checkout && pnpm run start",
+    "start:order": "cd order && pnpm run start",
+    "start:products": "cd products && pnpm run start",
+    "start:state-management": "cd state-management && pnpm run start"
+  },
+  "keywords": [],
+  "author": "Jeffrey Bernadas",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

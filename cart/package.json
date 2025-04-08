@@ -1,5 +1,5 @@
 {
-  "name": "app-shell",
+  "name": "cart",
   "version": "0.0.1",
   "scripts": {
     "build": "cross-env NODE_ENV=production rspack build",
