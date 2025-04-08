@@ -1,12 +1,18 @@
 import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router";
+import { ThemeProvider } from "@core/themes/shadcn";
+import router from "./router";
+import { Provider as ReduxProvider } from "@state-management/ReduxProvider";
 
+import "@core/styles";
 import "./index.css";
 
 const App = () => (
-  <div className="mt-10 text-3xl mx-auto max-w-6xl">
-    <div>Name: app-shell</div>
-    <div>Framework: react-19</div>
-  </div>
+  <ReduxProvider>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </ReduxProvider>
 );
 
 const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
