@@ -6,6 +6,7 @@ import {
   updateUserInfo,
   clearUserInfo,
 } from "@state-management/checkout-slice";
+import { addOrder } from "@state-management/order-slice";
 import type { RootState } from "@state-management/store";
 import { useNavigate } from "react-router";
 import {
@@ -22,6 +23,9 @@ import {
   RadioGroupItem,
 } from "@core/components/shadcn";
 import { useCartCalculations } from "../hooks/useCartCalculations";
+import { IProduct } from "../types/product.type";
+import { ICartItem } from "../types/cart.type";
+import { IOrder, IOrderItem } from "../types/order.type";
 
 const CheckoutPage = () => {
   const dispatch = useAppDispatch();
@@ -50,6 +54,27 @@ const CheckoutPage = () => {
       alert("Please fill in all user information fields.");
       return;
     }
+
+    const newOrder: IOrder = {
+      orderId: `ORD-${Date.now()}`,
+      timestamp: Date.now(),
+      status: "Pending",
+      totalPrice: totalPrice,
+      userInfo: { ...userInfo },
+      items: itemsWithDetails.map((item): IOrderItem => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        product: {
+          id: item.product.id,
+          name: item.product.name,
+          price: item.product.price,
+          image: item.product.image,
+        },
+      })),
+    };
+
+    dispatch(addOrder(newOrder));
+
     itemsWithDetails.forEach((item) => {
       dispatch(
         decrementProductQuantity({ 
