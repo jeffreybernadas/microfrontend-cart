@@ -15,6 +15,9 @@ const Navbar = () => {
         </Link>
         <div>
           <Button asChild variant="outline">
+            <Link to="/order">Orders</Link>
+          </Button>
+          <Button asChild variant="outline">
             <Link to="/cart">Cart ({cartItems.length})</Link>
           </Button>
         </div>

@@ -19,8 +19,7 @@ const OrderPage = () => {
   const handleMarkDelivered = (orderId: string) => {
     dispatch(updateOrderStatus({ orderId, status: "Delivered" }));
   };
-
-  // Determine the defaultValue for the Accordion
+  
   const defaultOpenOrderId = orders.length > 0 ? orders[0].orderId : undefined;
 
   return (
