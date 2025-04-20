@@ -36,7 +36,7 @@ const initialState: IProduct[] = [
     description:
       "Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
     image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    availableQuantity: 14,
+    availableQuantity: 0,
   },
   {
     id: "4",
@@ -199,17 +199,26 @@ const initialState: IProduct[] = [
   },
 ];
 
+interface DecrementPayload {
+  productId: IProduct["id"];
+  quantity: number;
+}
+
 const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
     decrementProductQuantity: (
       state,
-      action: PayloadAction<IProduct["id"]>
+      action: PayloadAction<DecrementPayload>
     ) => {
-      const product = state.find((product) => product.id === action.payload);
+      const { productId, quantity } = action.payload;
+      const product = state.find((product) => product.id === productId);
       if (product) {
-        product.availableQuantity--;
+        product.availableQuantity = Math.max(
+          0,
+          product.availableQuantity - quantity
+        );
       }
     },
   },

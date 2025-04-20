@@ -1,7 +1,6 @@
 import { createBrowserRouter, Outlet } from "react-router";
 
 import Main from "./pages/Main";
-import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderPage from "./pages/OrderPage";
@@ -30,10 +29,6 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: "/products/:id",
-        element: <ProductPage />,
-      },
-      {
         path: "/cart",
         element: <CartPage />,
       },
@@ -42,7 +37,7 @@ const router = createBrowserRouter([
         element: <CheckoutPage />,
       },
       {
-        path: "/orders",
+        path: "/order",
         element: <OrderPage />,
       },
     ],
