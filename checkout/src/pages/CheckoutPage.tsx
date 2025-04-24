@@ -22,10 +22,12 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "@core/components/shadcn";
-import { useCartCalculations } from "../hooks/useCartCalculations";
-import { IProduct } from "../types/product.type";
-import { ICartItem } from "../types/cart.type";
+import { useCartCalculations } from "@cart/useCartCalculations";
 import { IOrder, IOrderItem } from "../types/order.type";
+import type { ICartItem } from "../types/cart.type";
+import type { IProduct } from "../types/product.type";
+
+import "../index.css";
 
 const CheckoutPage = () => {
   const dispatch = useAppDispatch();
@@ -61,25 +63,27 @@ const CheckoutPage = () => {
       status: "Pending",
       totalPrice: totalPrice,
       userInfo: { ...userInfo },
-      items: itemsWithDetails.map((item): IOrderItem => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        product: {
-          id: item.product.id,
-          name: item.product.name,
-          price: item.product.price,
-          image: item.product.image,
-        },
-      })),
+      items: itemsWithDetails.map(
+        (item: ICartItem & { product: IProduct }): IOrderItem => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          product: {
+            id: item.product.id,
+            name: item.product.name,
+            price: item.product.price,
+            image: item.product.image,
+          },
+        })
+      ),
     };
 
     dispatch(addOrder(newOrder));
 
-    itemsWithDetails.forEach((item) => {
+    itemsWithDetails.forEach((item: ICartItem & { product: IProduct }) => {
       dispatch(
-        decrementProductQuantity({ 
-          productId: item.productId, 
-          quantity: item.quantity 
+        decrementProductQuantity({
+          productId: item.productId,
+          quantity: item.quantity,
         })
       );
     });
@@ -144,19 +148,23 @@ const CheckoutPage = () => {
                 <p>Your cart is empty.</p>
               ) : (
                 <ul className="space-y-3 max-h-60 overflow-y-auto">
-                  {itemsWithDetails.map((item) => (
+                  {itemsWithDetails.map((item: ICartItem & { product: IProduct }) => (
                     <li
                       key={item.productId}
                       className="flex justify-between items-center border-b pb-2 pr-2"
                     >
-                      <img 
+                      <img
                         src={item.product.image}
                         alt={item.product.name}
                         className="h-12 w-12 object-contain mr-3 flex-shrink-0"
                       />
                       <div className="flex-grow">
-                        <p className="font-medium text-sm">{item.product.name}</p>
-                        <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
+                        <p className="font-medium text-sm">
+                          {item.product.name}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          Qty: {item.quantity}
+                        </p>
                       </div>
                       <p className="text-sm ml-3 flex-shrink-0">
                         ${(item.product.price * item.quantity).toFixed(2)}

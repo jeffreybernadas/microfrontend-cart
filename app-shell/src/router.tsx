@@ -1,9 +1,9 @@
 import { createBrowserRouter, Outlet } from "react-router";
 
 import Main from "./pages/Main";
-import CartPage from "./pages/CartPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import OrderPage from "./pages/OrderPage";
+import CartPage from "@cart/CartPage";
+import CheckoutPage from "@checkout/CheckoutPage";
+import OrderPage from "@order/OrderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import Navbar from "./components/Navbar";

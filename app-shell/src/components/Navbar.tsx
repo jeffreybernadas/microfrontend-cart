@@ -13,7 +13,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center space-x-2">
           <p className="text-2xl font-bold">Core Shop</p>
         </Link>
-        <div>
+        <div className="flex space-x-2">
           <Button asChild variant="outline">
             <Link to="/order">Orders</Link>
           </Button>

@@ -12,7 +12,6 @@ export const mfConfig = {
   },
   remotes: {
     "@core": "core@https://core.thecodebit.digital/remoteEntry.js",
-    "@app-shell": "app_shell@http://localhost:9500/remoteEntry.js",
   },
   shared: ["react", "react-dom", "@reduxjs/toolkit", "react-redux"],
 };

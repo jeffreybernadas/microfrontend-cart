@@ -12,6 +12,8 @@ import {
 } from "@core/components/shadcn";
 import { cn } from "@core/lib";
 
+import "../index.css";
+
 const OrderPage = () => {
   const dispatch = useAppDispatch();
   const orders = useAppSelector((state: RootState) => state.orders.orders);

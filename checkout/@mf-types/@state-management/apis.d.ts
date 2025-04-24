@@ -1,0 +1,3 @@
+
+    export type RemoteKeys = '@state-management/store' | '@state-management/ReduxProvider' | '@state-management/rtk-hooks' | '@state-management/product-slice';
+    type PackageType<T> = T extends '@state-management/product-slice' ? typeof import('@state-management/product-slice') :T extends '@state-management/rtk-hooks' ? typeof import('@state-management/rtk-hooks') :T extends '@state-management/ReduxProvider' ? typeof import('@state-management/ReduxProvider') :T extends '@state-management/store' ? typeof import('@state-management/store') :any;

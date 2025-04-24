@@ -9,6 +9,10 @@ declare module "@state-management/product-slice";
 declare module "@state-management/cart-slice";
 declare module "@state-management/checkout-slice";
 declare module "@state-management/order-slice";
+declare module "@products/Products";
+declare module "@cart/CartPage";
+declare module "@checkout/CheckoutPage";
+declare module "@order/OrderPage";
 
 declare module "@state-management/store" {
   interface IUserInfo {

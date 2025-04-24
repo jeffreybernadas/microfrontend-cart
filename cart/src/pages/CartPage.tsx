@@ -16,6 +16,8 @@ import {
 } from "@core/components/shadcn";
 import { useCartCalculations } from "../hooks/useCartCalculations";
 
+import "../index.css";
+
 const CartPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
