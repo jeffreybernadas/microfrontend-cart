@@ -4,7 +4,7 @@ import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 
-import { mfConfig } from "./module-federation.config";
+import { mfConfigDev, mfConfigProd } from "./module-federation.config";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -13,7 +13,9 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 
 const publicPath = isDev
   ? "http://localhost:9500/"
-  : "https://mfe-cart.vercel.app/";
+  : "https://core-mfe-shop.vercel.app/";
+
+const mfConfig = isDev ? mfConfigDev : mfConfigProd;
 
 export default defineConfig({
   context: __dirname,

@@ -4,13 +4,18 @@ import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 
-
-import { mfConfig } from "./module-federation.config";
+import { mfConfigDev, mfConfigProd } from "./module-federation.config";
 
 const isDev = process.env.NODE_ENV === "development";
 
 // Target browsers, see: https://github.com/browserslist/browserslist
 const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
+
+const publicPath = isDev
+  ? "http://localhost:9503/"
+  : "https://core-mfe-checkout.vercel.app/";
+
+const mfConfig = isDev ? mfConfigDev : mfConfigProd;
 
 export default defineConfig({
   context: __dirname,
@@ -30,7 +35,7 @@ export default defineConfig({
     // You need to set a unique value that is not equal to other applications
     uniqueName: "checkout",
     // publicPath must be configured if using manifest
-    publicPath: "http://localhost:9503/",
+    publicPath,
   },
 
   experiments: {
