@@ -10,10 +10,9 @@ const App = () => (
     <h2 className="text-xl font-bold text-center">
       Core Shop's Product Components are running under the hood
     </h2>
-    {/* TODO: Update this once the app-shell is deployed */}
     <Button
       className="w-full"
-      onClick={() => window.open("http://localhost:9500/", "_blank")}
+      onClick={() => window.open("https://core-mfe-shop.vercel.app/", "_blank")}
     >
       Go to Core Shop
     </Button>
